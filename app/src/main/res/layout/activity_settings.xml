@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="launchQRActivity"
+        android:layout_marginTop="5dp"
+        android:id="@+id/ScanQRBtn"
+        android:text="@string/scan_qr"/>
+
+    <Button
+        android:layout_toRightOf="@id/ScanQRBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:onClick="setMyBeacon"
+        android:id="@+id/SaveQrBtn"
+        android:text="@string/save" />
+
+    <TextView
+        android:background="@drawable/border"
+        android:layout_below="@id/ScanQRBtn"
+        android:gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/QR_Code_txt"
+        android:hint="@string/scan_qr"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_margin="5dp" />
+
+</RelativeLayout>

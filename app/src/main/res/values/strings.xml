@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">My Beacon Arrival</string>
+
+    <string name="enable_bluetooth">Have you enabled bluetooth?</string>
+    <string name="new_iBeacon">New iBeacon</string>
+    <string name="settings">Settings</string>
+    <string name="scan_qr">Scan QR Code</string>
+    <string name="save">Save</string>
+</resources>
