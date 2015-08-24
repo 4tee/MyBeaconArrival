@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
+        inflater.inflate(R.menu.main_menu, menu);
 
         return true;
     }

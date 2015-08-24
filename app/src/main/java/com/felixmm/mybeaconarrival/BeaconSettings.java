@@ -3,7 +3,9 @@ package com.felixmm.mybeaconarrival;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,15 +15,10 @@ public class BeaconSettings extends AppCompatActivity {
 
     TextView QRTxt;
 
-    public void launchQRActivity(View v) {
-        Intent intent = new Intent(v.getContext(), ScannerActivity.class);
-        startActivityForResult(intent, GET_QR_VALUE);
-    }
-
-    public void setMyBeacon(View v) {
-        if (!QRTxt.getText().toString().equals("")) {
-            SharedPreferenceHelper.setSharedStringPref(this, "myBeacon", QRTxt.getText().toString());
-            Toast.makeText(this, "Your beacon has been registered.",Toast.LENGTH_SHORT).show();
+    private void setMyBeacon(String code) {
+        if (!code.equals("")) {
+            SharedPreferenceHelper.setSharedStringPref(this, "myBeacon", code);
+            Toast.makeText(this, "Your beacon: " + code, Toast.LENGTH_SHORT).show();
             finish();
         } else {
             Toast.makeText(this, "Please scan your QR Code.",Toast.LENGTH_SHORT).show();
@@ -40,17 +37,39 @@ public class BeaconSettings extends AppCompatActivity {
 
         String myBeaconValue = SharedPreferenceHelper.getSharedStringPref(this, "myBeacon", "");
         if (!myBeaconValue.equals("")) {
-            QRTxt.setText(myBeaconValue);
+            QRTxt.setText("Your iBeacon has been registered.\n" + myBeaconValue);
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GET_QR_VALUE) {
 
-            String result = data.getStringExtra("QR");
-            if (result!=null) QRTxt.setText(result);
+            String QRCode = data.getStringExtra("QR");
+            if (QRCode!=null) {
+                QRTxt.setText("Your iBeacon has been registered.");
+                setMyBeacon(QRCode);
+            }
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settings_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.scanBeacon:
+                Intent intent = new Intent(this, ScannerActivity.class);
+                startActivityForResult(intent, GET_QR_VALUE);
+                return true;
+            default:
+                return false;
         }
     }
 }
