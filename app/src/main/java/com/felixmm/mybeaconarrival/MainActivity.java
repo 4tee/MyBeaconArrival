@@ -3,17 +3,21 @@ package com.felixmm.mybeaconarrival;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import org.altbeacon.beacon.Beacon;
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
 
     private TextView noticeTxt;
     private ImageView imgPos;
+    private Switch scanSwitch;
 
     private BeaconManager beaconManager;
 
@@ -39,14 +44,40 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
 
         noticeTxt = (TextView) findViewById(R.id.notice_txt);
         imgPos = (ImageView) findViewById(R.id.beacon_position);
+        scanSwitch = (Switch) findViewById(R.id.scan_switch);
 
         beaconManager = BeaconManager.getInstanceForApplication(this);
-        beaconManager.getBeaconParsers().add(new BeaconParser().
-                setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
+
+        try {
+            beaconManager.getBeaconParsers().add(new BeaconParser().
+                    setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
+        } catch (Exception e) {
+            Log.d("ts", "exception caught:" +e.getCause());
+        }
 
         verifyBluetooth();
 
-        beaconManager.bind(this);
+        scanSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Log.d("ts","switch state:"+isChecked);
+                if (isChecked) {
+                    beaconManager.bind(MainActivity.this);
+                    noticeTxt.setText("Searching beacon");
+                    SharedPreferenceHelper.setSharedBooleanPref(MainActivity.this, "scanning", true);
+                    ((BeaconApplication)MainActivity.this.getApplication()).startBeaconMonitoring();
+                } else {
+                    beaconManager.unbind(MainActivity.this);
+                    noticeTxt.setText("");
+                    SharedPreferenceHelper.setSharedBooleanPref(MainActivity.this, "scanning", false);
+                    ((BeaconApplication)MainActivity.this.getApplication()).stopBeaconMonitoring();
+                }
+            }
+        });
+
+        if (SharedPreferenceHelper.getSharedBooleanPref(this, "scanning", false)) {
+            scanSwitch.setChecked(true);
+        }
     }
 
 
@@ -55,15 +86,28 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                noticeTxt.setText(line);
                 if (line.equals("immediate")) imgPos.setImageResource(R.drawable.immediate);
                 else if (line.equals("near")) imgPos.setImageResource(R.drawable.near);
                 else if (line.equals("far")) imgPos.setImageResource(R.drawable.far);
                 else imgPos.setImageResource(R.drawable.background);
+
+                if (!scanSwitch.isChecked())
+                    imgPos.setImageResource(R.drawable.background);
             }
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (beaconManager.isBound(this)) beaconManager.setBackgroundMode(false);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (beaconManager.isBound(this)) beaconManager.setBackgroundMode(true);
+    }
 
     @Override
     protected void onDestroy() {
@@ -81,11 +125,10 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
             return Math.pow(ratio,10);
         }
         else {
-//            double accuracy =  (0.89976)*Math.pow(ratio,7.7095) + 0.111;
-//            return accuracy;
             return (0.42093)*Math.pow(ratio,6.9476) + 0.54992;
         }
     }
+
 
     @Override
     public void onBeaconServiceConnect() {
@@ -94,10 +137,8 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
             public void didRangeBeaconsInRegion(Collection<Beacon> beacons, Region region) {
                 String myBeacon = SharedPreferenceHelper.getSharedStringPref(MainActivity.this, "myBeacon", "");
 
-                if (beacons.size() <= 0) {
-                    showStatus("Searching beacon signal..");
-                }
-                else {
+                if (beacons.size() > 0) {
+
                     boolean foundBeacon = false;
 
                     for (Beacon beacon : beacons) {
@@ -106,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
                         if (myBeacon.toLowerCase().equals(UUID.toLowerCase())) {
                             foundBeacon = true;
                             double calDist = calculateDistance(beacon.getTxPower(), beacon.getRssi());
-                            Log.d("ts","calDist:" +calDist+" VS dist:" + beacon.getDistance());
 
                             if (calDist < 0.5) {
                                 // This beacon is immediate (< 0.5 meters)
@@ -121,9 +161,13 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
                         }
                     }
 
-                    if (!foundBeacon) showStatus("Your beacon is not detected yet.");
+                    if (foundBeacon) {
+                        Vibrator v = (Vibrator) MainActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
+                        //v.vibrate(500);
+                    }
 
                 }
+                else showStatus("");
             }
         });
         try {
@@ -139,12 +183,11 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.addBeacon:
-                Intent settingIntent = new Intent(this, BeaconSettings.class);
+                Intent settingIntent = new Intent(this, BeaconRegistration.class);
                 startActivity(settingIntent);
                 return true;
             default:
@@ -196,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
             if (!mBluetoothAdapter.isEnabled()) {
                 noticeTxt.setText(getString(R.string.enable_bluetooth));
             } else {
-                noticeTxt.setText("No beacon is detected yet.");
+                noticeTxt.setText("");
             }
         }
     }

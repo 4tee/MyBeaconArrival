@@ -6,14 +6,17 @@
     <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
+        android:name=".BeaconApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
+            android:launchMode="singleInstance"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +24,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".BeaconSettings"
+        <activity android:name=".BeaconRegistration"
             android:label="@string/new_iBeacon"
             android:parentActivityName=".MainActivity">
             <meta-data
@@ -33,10 +36,10 @@
         <activity android:name=".ScannerActivity"
             android:theme="@style/AppOverlayTheme"
             android:label="@string/scan_qr"
-            android:parentActivityName=".BeaconSettings">
+            android:parentActivityName=".BeaconRegistration">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".BeaconSettings" />
+                android:value=".BeaconRegistration" />
         </activity>
 
     </application>

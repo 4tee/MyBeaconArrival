@@ -5,15 +5,23 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
+    <Switch
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/start_scanning"
+        android:id="@+id/scan_switch" />
+
     <TextView
         android:id="@+id/notice_txt"
         android:text="@string/enable_bluetooth"
         android:layout_width="wrap_content"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"/>
 
     <ImageView
-        android:layout_below="@id/notice_txt"
+        android:layout_below="@id/scan_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/beacon_position"

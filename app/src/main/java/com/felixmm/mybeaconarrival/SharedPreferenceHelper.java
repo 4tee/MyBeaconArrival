@@ -19,10 +19,15 @@ public class SharedPreferenceHelper {
         return prefs.getString(key, dValue);
     }
 
-    public static void clearPref(Context context, String key) {
+    public static void setSharedBooleanPref(Context context, String key, boolean value) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.remove(key);
+        editor.putBoolean(key, value);
         editor.apply();
+    }
+
+    public static boolean getSharedBooleanPref(Context context, String key, boolean dValue) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean(key, dValue);
     }
 }

@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class BeaconSettings extends AppCompatActivity {
+public class BeaconRegistration extends AppCompatActivity {
 
     static final int GET_QR_VALUE = 1;
 
