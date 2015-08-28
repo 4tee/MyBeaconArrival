@@ -3,15 +3,12 @@ package com.felixmm.mybeaconarrival;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -52,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
             beaconManager.getBeaconParsers().add(new BeaconParser().
                     setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
         } catch (Exception e) {
-            Log.d("ts", "exception caught:" +e.getCause());
+            //Log.d("ts", "exception caught:" +e.getCause());
         }
 
         verifyBluetooth();
@@ -60,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         scanSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Log.d("ts","switch state:"+isChecked);
                 if (isChecked) {
                     beaconManager.bind(MainActivity.this);
                     noticeTxt.setText("Searching beacon");
@@ -139,13 +135,10 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
 
                 if (beacons.size() > 0) {
 
-                    boolean foundBeacon = false;
-
                     for (Beacon beacon : beacons) {
                         String UUID = beacon.getId1().toString();
 
                         if (myBeacon.toLowerCase().equals(UUID.toLowerCase())) {
-                            foundBeacon = true;
                             double calDist = calculateDistance(beacon.getTxPower(), beacon.getRssi());
 
                             if (calDist < 0.5) {
@@ -161,18 +154,15 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
                         }
                     }
 
-                    if (foundBeacon) {
-                        Vibrator v = (Vibrator) MainActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
-                        //v.vibrate(500);
-                    }
-
                 }
                 else showStatus("");
             }
         });
         try {
             beaconManager.startRangingBeaconsInRegion(new Region("myRangingUniqueId", null, null, null));
-        } catch (RemoteException e) {   }
+        } catch (RemoteException e) {
+            // nothing here
+        }
     }
 
     @Override

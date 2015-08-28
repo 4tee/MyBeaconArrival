@@ -18,7 +18,7 @@ public class BeaconRegistration extends AppCompatActivity {
     private void setMyBeacon(String code) {
         if (!code.equals("")) {
             SharedPreferenceHelper.setSharedStringPref(this, "myBeacon", code);
-            Toast.makeText(this, "Your beacon: " + code, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Your iBeacon has been registered.", Toast.LENGTH_SHORT).show();
             finish();
         } else {
             Toast.makeText(this, "Please scan your QR Code.",Toast.LENGTH_SHORT).show();
@@ -37,7 +37,7 @@ public class BeaconRegistration extends AppCompatActivity {
 
         String myBeaconValue = SharedPreferenceHelper.getSharedStringPref(this, "myBeacon", "");
         if (!myBeaconValue.equals("")) {
-            QRTxt.setText("Your iBeacon has been registered.\n" + myBeaconValue);
+            QRTxt.setText("Your iBeacon has been registered.");
         }
     }
 
