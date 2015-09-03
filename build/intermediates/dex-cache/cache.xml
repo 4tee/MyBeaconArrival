@@ -2,60 +2,60 @@
 <items version="2" >
 
     <item
-        jar="/Users/rhymes/Desktop/MyBeaconArrival/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/core/1.8.1/jars/classes.jar"
+        jar="/Users/rhymes_mcpro/Documents/Bitbucket/My-Beacon-Arrival/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
         jumboMode="false"
-        revision="23.0.0 rc3"
-        sha1="617e6d86cce54d161759d0d06a23f11e14258877">
-        <dex dex="/Users/rhymes/Desktop/MyBeaconArrival/app/build/intermediates/pre-dexed/debug/classes-5859feb01e51c804cbeeb0a7ab22b48584f0ef31.jar" />
-    </item>
-    <item
-        jar="/Users/rhymes/Desktop/MyBeaconArrival/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
-        jumboMode="false"
-        revision="23.0.0 rc3"
+        revision="23.0.0"
         sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="/Users/rhymes/Desktop/MyBeaconArrival/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-88a6eab886056915323387aeb14303270366910c.jar" />
+        <dex dex="/Users/rhymes_mcpro/Documents/Bitbucket/My-Beacon-Arrival/app/build/intermediates/pre-dexed/release/internal_impl-22.2.1-10a2fb80df297624869ce923cab193a6c95860be.jar" />
     </item>
     <item
-        jar="/Users/rhymes/Desktop/MyBeaconArrival/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jar="/Users/rhymes_mcpro/Documents/Bitbucket/My-Beacon-Arrival/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/zbar/1.8.1/jars/libs/zbar.jar"
         jumboMode="false"
-        revision="23.0.0 rc3"
-        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="/Users/rhymes/Desktop/MyBeaconArrival/app/build/intermediates/pre-dexed/debug/classes-5075ca95615aea1ce62e8d171ffa18feab76cd97.jar" />
-    </item>
-    <item
-        jar="/Users/rhymes/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
-        jumboMode="false"
-        revision="23.0.0 rc3"
-        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
-        <dex dex="/Users/rhymes/Desktop/MyBeaconArrival/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-455e76d94aaa1c78da86461c1c06c065f23615e2.jar" />
-    </item>
-    <item
-        jar="/Users/rhymes/Desktop/MyBeaconArrival/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/zbar/1.8.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.0 rc3"
-        sha1="4c716db8fa4f310f255d18c734ca3d48b549ed94">
-        <dex dex="/Users/rhymes/Desktop/MyBeaconArrival/app/build/intermediates/pre-dexed/debug/classes-a8494d8b6cf92971b421b84e0cd5fb68c5b0532f.jar" />
-    </item>
-    <item
-        jar="/Users/rhymes/Desktop/MyBeaconArrival/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.0 rc3"
-        sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="/Users/rhymes/Desktop/MyBeaconArrival/app/build/intermediates/pre-dexed/debug/classes-d29ada13c9d31fe99495a07451dec850354b07fd.jar" />
-    </item>
-    <item
-        jar="/Users/rhymes/Desktop/MyBeaconArrival/app/build/intermediates/exploded-aar/org.altbeacon/android-beacon-library/2.5.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.0 rc3"
-        sha1="3e75f1ad43fbaff21262ec4f3798bcbc34d672fe">
-        <dex dex="/Users/rhymes/Desktop/MyBeaconArrival/app/build/intermediates/pre-dexed/debug/classes-438fecd5604443f6b54b5d821221436a7b116f34.jar" />
-    </item>
-    <item
-        jar="/Users/rhymes/Desktop/MyBeaconArrival/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/zbar/1.8.1/jars/libs/zbar.jar"
-        jumboMode="false"
-        revision="23.0.0 rc3"
+        revision="23.0.0"
         sha1="7bbdf7ba57a8a157c0cad51e455609c70887812e">
-        <dex dex="/Users/rhymes/Desktop/MyBeaconArrival/app/build/intermediates/pre-dexed/debug/zbar-65301cff7b004d65762d48bea4565512c88f349e.jar" />
+        <dex dex="/Users/rhymes_mcpro/Documents/Bitbucket/My-Beacon-Arrival/app/build/intermediates/pre-dexed/release/zbar-8f8f16d3447c738e05141a7d16be86a2096a8441.jar" />
+    </item>
+    <item
+        jar="/Users/rhymes_mcpro/Documents/Bitbucket/My-Beacon-Arrival/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/Users/rhymes_mcpro/Documents/Bitbucket/My-Beacon-Arrival/app/build/intermediates/pre-dexed/release/classes-efbbf3850c4259b971565b7853a1e865721e2fc0.jar" />
+    </item>
+    <item
+        jar="/Users/rhymes_mcpro/Documents/Bitbucket/My-Beacon-Arrival/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/Users/rhymes_mcpro/Documents/Bitbucket/My-Beacon-Arrival/app/build/intermediates/pre-dexed/release/classes-643538d72adf9447f7399ee04573b1de26289cc7.jar" />
+    </item>
+    <item
+        jar="/Users/rhymes_mcpro/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="/Users/rhymes_mcpro/Documents/Bitbucket/My-Beacon-Arrival/app/build/intermediates/pre-dexed/release/support-annotations-22.2.1-1dd180ce3e8ee98a6553a9fbcf4767eb92f4ff0c.jar" />
+    </item>
+    <item
+        jar="/Users/rhymes_mcpro/Documents/Bitbucket/My-Beacon-Arrival/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/zbar/1.8.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="4c716db8fa4f310f255d18c734ca3d48b549ed94">
+        <dex dex="/Users/rhymes_mcpro/Documents/Bitbucket/My-Beacon-Arrival/app/build/intermediates/pre-dexed/release/classes-8b9337b17ed4431ab9fd67fbad9414619c43879a.jar" />
+    </item>
+    <item
+        jar="/Users/rhymes_mcpro/Documents/Bitbucket/My-Beacon-Arrival/app/build/intermediates/exploded-aar/org.altbeacon/android-beacon-library/2.5.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="3e75f1ad43fbaff21262ec4f3798bcbc34d672fe">
+        <dex dex="/Users/rhymes_mcpro/Documents/Bitbucket/My-Beacon-Arrival/app/build/intermediates/pre-dexed/release/classes-103eabde575873e0ae10ea3b469c8faabda9724e.jar" />
+    </item>
+    <item
+        jar="/Users/rhymes_mcpro/Documents/Bitbucket/My-Beacon-Arrival/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/core/1.8.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="617e6d86cce54d161759d0d06a23f11e14258877">
+        <dex dex="/Users/rhymes_mcpro/Documents/Bitbucket/My-Beacon-Arrival/app/build/intermediates/pre-dexed/release/classes-49a87de00ff6a12c719054d50ffd0dd186f851b9.jar" />
     </item>
 
 </items>

@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
 import org.altbeacon.beacon.BeaconManager;
 import org.altbeacon.beacon.BeaconParser;
@@ -27,12 +28,18 @@ public class BeaconApplication extends Application implements BootstrapNotifier 
     String lost_msg = "Signal lost. Please wait.";
 
     public void startBeaconMonitoring() {
-        if (regionBootstrap == null) {
-            String myBeacon = SharedPreferenceHelper.getSharedStringPref(this, "myBeacon", "");
-            Region region = new Region("backgroundRegion",
-                    Identifier.parse(myBeacon), null, null);
-            regionBootstrap = new RegionBootstrap(this, region);
-        }
+        Log.d("BluetoothLeScanner","startBeaconMonitoring");
+
+        String myBeacon = SharedPreferenceHelper.getSharedStringPref(this, "myBeacon", "");
+        Log.d("BluetoothLeScanner","myBeacon: "+myBeacon);
+        Region region = new Region("backgroundRegion",
+                Identifier.parse(myBeacon), null, null);
+        regionBootstrap = new RegionBootstrap(this, region);
+
+//        if (regionBootstrap == null) {
+//
+//
+//        }
     }
 
     public void stopBeaconMonitoring() {
@@ -48,23 +55,26 @@ public class BeaconApplication extends Application implements BootstrapNotifier 
         beaconManager.getBeaconParsers().add(new BeaconParser().
                 setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
 
-        if (SharedPreferenceHelper.getSharedBooleanPref(this, "scanning", false))
-            startBeaconMonitoring();
+        boolean isScanning = SharedPreferenceHelper.getSharedBooleanPref(this, "scanning", false);
+        Log.d("BluetoothLeScanner","isScanning: "+isScanning);
+        if (isScanning) startBeaconMonitoring();
 
         // simply constructing this class and holding a reference to it in your custom Application
         // class will automatically cause the BeaconLibrary to save battery whenever the application
         // is not visible.  This reduces bluetooth power usage by about 60%
-        backgroundPowerSaver = new BackgroundPowerSaver(this);
-        beaconManager.setBackgroundBetweenScanPeriod(5000);
+        // backgroundPowerSaver = new BackgroundPowerSaver(this);
+        beaconManager.setBackgroundBetweenScanPeriod(5000L);
     }
 
     @Override
     public void didEnterRegion(Region region) {
+        Log.d("BluetoothLeScanner","didEnterRegion");
         sendNotification(found_msg);
     }
 
     @Override
     public void didExitRegion(Region region) {
+        Log.d("BluetoothLeScanner","didExitRegion");
         sendNotification(lost_msg);
     }
 
